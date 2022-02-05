@@ -21,8 +21,8 @@ const Navegacion = () => {
   return (
     <Nav>
       <Link href="/">Inicio</Link>
-      <Link href="/">populares</Link>
-      <Link href="/">Nuevo producto</Link>
+      <Link href="/populares">populares</Link>
+      <Link href="/nuevo-producto">Nuevo producto</Link>
     </Nav>
   );
 };
