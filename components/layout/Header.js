@@ -26,7 +26,7 @@ const Logo = styled.p`
 `;
 
 const Header = () => {
-  const usuario = false;
+  const usuario = true;
 
   return (
     <header
@@ -36,7 +36,12 @@ const Header = () => {
       `}
     >
       <ContenedorHeader>
-        <div>
+        <div
+          css={css`
+            display: flex;
+            align-items: center;
+          `}
+        >
           <Link href="/">
             <Logo>P</Logo>
           </Link>
