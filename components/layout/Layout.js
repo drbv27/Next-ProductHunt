@@ -53,7 +53,6 @@ const Layout = (props) => {
         `}
       />
       <Head>
-        <html lang="es" />
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
