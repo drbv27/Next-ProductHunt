@@ -4,7 +4,12 @@ import Image from "next/image";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import styles from "../styles/Home.module.css";
-import { Formulario, Campo, InputSubmit } from "../components/ui/Formulario";
+import {
+  Formulario,
+  Campo,
+  InputSubmit,
+  Error,
+} from "../components/ui/Formulario";
 
 //validaciones
 import useValidacion from "../hooks/useValidacion";
@@ -17,8 +22,14 @@ const STATE_INICIAL = {
 };
 
 export default function CrearCuenta() {
-  const { valores, errores, submitForm, handleSubmit, handleChange } =
-    useValidacion(STATE_INICIAL, validarCrearCuenta, crearCuenta);
+  const {
+    valores,
+    errores,
+    submitForm,
+    handleSubmit,
+    handleChange,
+    handleBlur,
+  } = useValidacion(STATE_INICIAL, validarCrearCuenta, crearCuenta);
 
   const { nombre, email, password } = valores;
 
@@ -47,8 +58,12 @@ export default function CrearCuenta() {
                 name="nombre"
                 value={nombre}
                 onChange={handleChange}
+                onBlur={handleBlur}
               />
             </Campo>
+
+            {errores.nombre && <Error>{errores.nombre}</Error>}
+
             <Campo>
               <label htmlFor="email">Email</label>
               <input
@@ -58,8 +73,12 @@ export default function CrearCuenta() {
                 name="email"
                 value={email}
                 onChange={handleChange}
+                onBlur={handleBlur}
               />
             </Campo>
+
+            {errores.email && <Error>{errores.email}</Error>}
+
             <Campo>
               <label htmlFor="password">Password</label>
               <input
@@ -69,8 +88,12 @@ export default function CrearCuenta() {
                 name="password"
                 value={password}
                 onChange={handleChange}
+                onBlur={handleBlur}
               />
             </Campo>
+
+            {errores.password && <Error>{errores.password}</Error>}
+
             <InputSubmit type="submit" value="Crear Cuenta" />
           </Formulario>
         </>
