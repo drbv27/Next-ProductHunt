@@ -40,7 +40,6 @@ const useValidacion = (stateInicial, validar, fn) => {
   return {
     valores,
     errores,
-    submitForm,
     handleSubmit,
     handleChange,
     handleBlur,
