@@ -32,19 +32,15 @@ export default function Login() {
 
   const { email, password } = valores;
 
-  function iniciarSesion() {
-    console.log("Iniciando Sesión...");
-  }
-
-  /*   async function crearCuenta() {
+  async function iniciarSesion() {
     try {
-      await firebase.registrar(nombre, email, password);
+      await firebase.login(email, password);
       router.push("/");
     } catch (error) {
-      console.error("Hubo un error al crear el usuario", error.message);
+      console.error("Hubo un error al autenticar el usuario", error.message);
       guardarError(error.message);
     }
-  } */
+  }
 
   return (
     <div>
