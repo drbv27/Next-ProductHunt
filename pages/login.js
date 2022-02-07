@@ -35,6 +35,7 @@ export default function Login() {
   async function iniciarSesion() {
     try {
       await firebase.login(email, password);
+      console.log("usuario autenticado");
       router.push("/");
     } catch (error) {
       console.error("Hubo un error al autenticar el usuario", error.message);
