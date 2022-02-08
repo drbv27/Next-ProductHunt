@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Layout from "../components/layout/Layout";
 import Image from "next/image";
 import styled from "@emotion/styled";
@@ -11,12 +11,19 @@ import {
   InputSubmit,
   Error,
 } from "../components/ui/Formulario";
-
+import { FirebaseContext } from "../firebase";
 import firebase from "../firebase/firebase";
 
 //validaciones
 import useValidacion from "../hooks/useValidacion";
 import validarCrearProducto from "../validacion/validarCrearProducto";
+import {
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  getFirestore,
+} from "firebase/firestore";
 
 const STATE_INICIAL = {
   nombre: "",
@@ -31,11 +38,32 @@ export default function NuevoProducto() {
   const [error, guardarError] = useState(false);
 
   const { valores, errores, handleSubmit, handleChange, handleBlur } =
-    useValidacion(STATE_INICIAL, validarCrearProducto, crearCuenta);
+    useValidacion(STATE_INICIAL, validarCrearProducto, crearProducto);
 
   const { nombre, empresa, imagen, url, descripcion } = valores;
 
-  async function crearCuenta() {}
+  //context con operaciones crud de firebase
+  const { usuario, firebase } = useContext(FirebaseContext);
+
+  async function crearProducto() {
+    //si el usuario no esta autenticado llevar al login
+    if (!usuario) {
+      return router.push("/login");
+    }
+    //crear el onjeto de nuevo producto
+    const producto = {
+      nombre,
+      empresa,
+      url,
+      descripcion,
+      votos: 0,
+      comentarios: [],
+      creado: Date.now(),
+    };
+    //insertar en la base de datos
+    const db = getFirestore();
+    const docRef = await addDoc(collection(db, "productos"), { producto });
+  }
 
   return (
     <div>
