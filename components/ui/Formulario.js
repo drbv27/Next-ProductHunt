@@ -6,10 +6,10 @@ export const Formulario = styled.form`
   margin: 2rem auto 0 auto;
 
   fieldset {
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     border: 1px solid #e1e1e1;
-    font-size: 2rem;
-    padding: 2rem;
+    font-size: 1.5rem;
+    padding: 1.5rem;
   }
 `;
 
